@@ -1,15 +1,17 @@
 import React from 'react'
 
 const Counter = () => {
-	const count = 2
-	const x = <h1>empty</h1>
+	const count = 0
+
 	const formatCount = () => {
-		return count === 0 ? x : count
+		return count === 0 ? 'empty' : count
 	}
+	const imageUrl = 'https://picsum.photos/200'
 	return (
 		<React.Fragment>
-			<h1>{formatCount()}</h1>
-			<button>+</button>
+			<img src={imageUrl} alt='home' />
+			<span className='badge bg-primary m-2'>{formatCount()}</span>
+			<button className='btn btn-primary btn-sm'>+</button>
 		</React.Fragment>
 	)
 }
