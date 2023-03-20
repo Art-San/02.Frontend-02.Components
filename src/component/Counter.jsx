@@ -16,8 +16,6 @@ const Counter = () => {
 
 	const handleIncrement = () => {
 		setCount(prevState => prevState + 1)
-		// setCount(prevState => prevState + 1)
-		// console.log('count', count)
 	}
 
 	const handleDecrement = () => {
@@ -26,25 +24,62 @@ const Counter = () => {
 
 	const handleTagChange = id => {
 		setTegs(prevState => prevState.filter(t => t !== id))
-		// setTegs(tags.filter(t => t !== id))
-		console.log('id', id)
+	}
+
+	// ПЕРВЫЙ ВАРИАНТ
+
+	// const renderTags = () => {
+	// 	if (tags.length === 0) return 'No Tegs'
+	// 	return tags.map((tag, i) => (
+	// 		<li
+	// 			key={i}
+	// 			className='btn btn-primary btn-sm m-2'
+	// 			onClick={() => handleTagChange(tag)}
+	// 		>
+	// 			{tag}
+	// 		</li>
+	// 	))
+	// }
+
+	// ВТОРОЙ ВАРИАНТ
+
+	// const renderTags = () => {
+	// 	return tags.length !== 0
+	// 		? tags.map((tag, i) => (
+	// 				<li
+	// 					key={i}
+	// 					className='btn btn-primary btn-sm m-2'
+	// 					onClick={() => handleTagChange(tag)}
+	// 				>
+	// 					{tag}
+	// 				</li>
+	// 		  ))
+	// 		: 'No Tegs'
+	// }
+
+	// ТРЕТИЙ ВАРИАНТ
+
+	const renderTags = () => {
+		return (
+			tags.length !== 0 &&
+			tags.map((tag, i) => (
+				<li
+					key={i}
+					className='btn btn-primary btn-sm m-2'
+					onClick={() => handleTagChange(tag)}
+				>
+					{tag}
+				</li>
+			))
+		)
+	}
+	// Четвертый вариант одно или другое
+	if (tags.length !== 0) {
+		return <ul>{renderTags()}</ul>
 	}
 
 	return (
 		<>
-			<ul>
-				{tags?.map((tag, i) => {
-					return (
-						<li
-							key={i}
-							className='btn btn-primary btn-sm m-2'
-							onClick={() => handleTagChange(tag)}
-						>
-							{tag}
-						</li>
-					)
-				})}
-			</ul>
 			<span className={getBageClasses()}>{formatCount()}</span>
 			<button
 				className='btn btn-primary btn-sm m-2'
